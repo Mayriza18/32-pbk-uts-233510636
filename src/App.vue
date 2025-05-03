@@ -15,12 +15,23 @@ const addTask = () => {
   }
 }
 
+const removeTask = (task) => {
+  tasks.value = tasks.value.filter(t => t.id !== task.id)
+}
+
 </script>
 
 <template>
   <div>
     <input type="text" v-model="newTask" @keyup.enter="addTask">
     <button @click="addTask">Tambahkan</button>
+
+    <ul>
+      <li v-for="task in tasks" :key="task.id">
+        {{ task.text }}
+        <button @click="removeTask(task)">Hapus</button>
+      </li>
+    </ul>
   </div>
 </template>
 
